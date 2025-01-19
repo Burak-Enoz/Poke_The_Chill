@@ -1,0 +1,11 @@
+body {
+  background-color: #000000;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  cursor: url(media/cursors/DefaultCursor.png) 12 4, auto;
+}
