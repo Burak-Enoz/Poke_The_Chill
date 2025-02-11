@@ -652,12 +652,12 @@ function updateButtonPositions() {
   m_BtnInfo.posY = (canvas.height * 1) / 100;
 }
 
-  // Call updateButtonPositions initially and on window resize
+// Call updateButtonPositions initially and on window resize
+updateButtonPositions();
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
   updateButtonPositions();
-  window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    updateButtonPositions();
-  });
+});
 
-  initGame();
+initGame();
