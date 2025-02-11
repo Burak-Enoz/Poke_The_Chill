@@ -320,18 +320,32 @@ function loadGame() {
     m_BtnClickUpdate.price = gameData.m_BtnClickUpdatePrice;
     m_BtnScoreUpdate.price = gameData.m_BtnScoreUpdatePrice;
     m_BtnAutoClickUnlock.price = gameData.m_BtnAutoClickUnlockPrice;
-    if (m_BtnAutoClickDmgUpgrade) {
-      m_BtnAutoClickDmgUpgrade.price = gameData.m_BtnAutoClickDmgUpgradePrice;
-    } else if (isAutoClickActive) {
-      m_BtnAutoClickDmgUpgrade = new Button(
+
+    if (isAutoClickActive) {
+      if (m_BtnAutoClickDmgUpgrade) {
+        m_BtnAutoClickDmgUpgrade.price = gameData.m_BtnAutoClickDmgUpgradePrice;
+      } else {
+        m_BtnAutoClickDmgUpgrade = new Button(
+          (canvas.width * 31) / 40,
+          (canvas.height * 36) / 100,
+          75,
+          "Auto Click Damage",
+          gameData.m_BtnAutoClickDmgUpgradePrice,
+          "media/NoChillToken.png",
+          true,
+          true
+        );
+      }
+    } else {
+      m_BtnAutoClickUnlock = new Button(
         (canvas.width * 31) / 40,
         (canvas.height * 36) / 100,
         75,
-        "Auto Click Damage",
-        gameData.m_BtnAutoClickDmgUpgradePrice,
+        "Unlock Auto Click",
+        gameData.m_BtnAutoClickUnlockPrice,
         "media/NoChillToken.png",
         true,
-        true
+        false
       );
     }
     m_BtnRarityUpdate.price = gameData.m_BtnRarityUpdatePrice;
@@ -347,19 +361,6 @@ function loadGame() {
         }
       }
     });
-
-    if (isAutoClickActive && !m_BtnAutoClickDmgUpgrade) {
-      m_BtnAutoClickDmgUpgrade = new Button(
-        (canvas.width * 31) / 40,
-        (canvas.height * 36) / 100,
-        75,
-        "Auto Click Damage",
-        50,
-        "media/NoChillToken.png",
-        true,
-        true
-      );
-    }
 
     m_Settings.soundVolume = gameData.soundVolume || 0.5; // Load soundVolume, default to 0.5 if not found
     m_BackgroundMusic.volume = m_Settings.soundVolume; // Apply the loaded sound volume
